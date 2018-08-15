@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Florida Blue Mockup</title>
+        <!-- jQuery (for Bootstrap and DOM manipulation) -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Google Front (global) 'Open Sans' -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <!-- Font Awesome icon -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
+        <style>
+            /* GENERAL STYLES */
+            body {
+                font-family: 'Open Sans', sans-serif;
+            }
+            .row_max_width {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            /* CORPORATE NAVIGATION */
+            .container_corporate {
+                background: #FAFAFA;
+                color: #6D6D6D;
+                font-size: .85em;
+                font-weight: 300;
+            }
+            .container_corporate ul {
+                list-style-type: none;
+                padding-left: 0px;
+                margin-bottom: 0px;
+                vertical-align: middle;
+            }
+            .container_corporate li {
+                display: inline-block;
+            }
+            .container_corporate a {
+                color: #6D6D6D;
+                text-decoration: none;
+                display: block;
+                padding: 5px 0px;
+                margin-right: 20px;
+            }
+            .container_corporate a.active {
+                border-bottom: 3px solid #1477D7;
+            }
+            .corporate_menu {
+                display: inline-block;
+                float: left;
+            }
+            .member_dropdown_click:hover {
+                cursor: pointer;
+            }
+            .container_corporate .members_dropdown {
+                display: none;
+                position: absolute;
+                background: #FFF;
+                width: 350px;
+                padding: 30px 30px 20px 5px;
+                border: 1px solid #CCCCCC;
+                margin: 5px 0px 0px 0px;
+                z-index: 10;
+            }
+            .container_corporate .members_dropdown_show {
+                display: block;
+            }
+            .members_dropdown li {
+                display: block;
+            }
+            .members_dropdown li:nth-child(2) {
+                border-bottom: 1px solid #EDEDED;
+            }
+            .member_dropdown_frame {
+                position: relative;
+                display: inline-block;
+            }
+            .members_dropdown .title {
+                color: #00324E;
+                font-size: 1.6em;
+                font-weight: 400;
+                padding: 0px 0px 5px 25px;
+            }
+            .members_dropdown li a {
+                width: 100%;
+                color: #0F5499;
+                font-size: 1.2em;
+                padding: 15px;
+                border-radius: 5px;
+                display: inline-block;
+            }
+            .members_dropdown li a i {
+                font-size: 1.3em;
+                margin-right: 5px;
+            }
+            .members_dropdown li a:hover {
+                background-color: #0F5499;
+                color: #FFF;
+            }
+            .corporate_tools {
+                display: inline-block;
+                float: right;
+            }
+            /* COMMENTING OUT BOOTSTRAP-SPECIFIC STYLINGS
+            .navbar .navbar-nav {
+                display: inline-block;
+                float: none;
+            } */
+            /* BOOTSTRAP-LESS CORPORATE NAVIGATION STYLES */
+
+            /* TOP NAVIGATION */
+            .container_top {
+                font-size: 1.12em;
+            }
+            .row_top {
+                margin: 25px auto 15px;
+            }
+            .top_menu, .top_login {
+                vertical-align: middle;
+            }
+            .top_menu {
+                padding-left: 0px;
+                margin-bottom: 0px;
+                float: left;
+            }
+            .top_menu li {
+                display: inline-block;
+                margin-right: 25px;
+            }
+            .top_menu li.icon {
+                margin-right: 30px;
+            }
+            .top_menu img {
+                height: 28px;
+            }
+            .top_menu a {
+                color: #1477D7;
+                text-decoration: none;
+            }
+            .top_menu a:hover {
+                text-decoration: none;
+            }
+            .top_login {
+                background: #249721;
+                color: #FFF;
+                font-size: .75em;
+                padding: 10px 22px;
+                display: inline-block;
+                float: right;
+                border: 1px solid #249721;
+                border-radius: 8px;
+            }
+            .top_login:hover {
+                background: #196a17;
+                border: 1px solid #196a17;
+            }
+            .top_login i {
+                font-size: 1.4em;
+                margin-right: 2px;
+            }
+            /* NEW MEMBER CONTAINER */
+            .container_newmember {
+                background: #B056BC;
+                color: #FFF;
+            }
+            .row_newmember {
+                margin: 25px auto;
+            }
+            .newmember_platform, .newmember_learnmore {
+                vertical-align: middle;
+            }
+            .newmember_platform {
+                float: left;
+            }
+            .newmember_platform .title {
+                font-size: 1.7em;
+            }
+            .newmember_platform .subtitle {
+                font-size: 1.55em;
+            }
+            .newmember_learnmore {
+                float: right;
+            }
+            .newmember_learnmore button {
+                background: none;
+                color: #FFF;
+                font-size: 1.2em;
+                padding: 5px 25px 10px;
+                border: 2px solid #FFF;
+                border-radius: 5px;
+            }
+            .newmember_learnmore button:hover {
+                background: #6e3088;
+                border-color: #6e3088;
+            }
+            .newmember_learnmore button i {
+                font-size: 1.6em;
+                margin-right: 5px;
+            }
+            /* CENTERS CONTAINER */
+            .row_centers {
+                margin-bottom: 40px;
+                overflow: auto;
+            }
+            .centers_badge {
+                background: red;
+                width: 38%;
+                margin-right: 2%;
+                float: left;
+            }
+            .centers_badge img {
+                width: 100%;
+            }
+            .centers_platform {
+                width: 58%;
+                float: right;
+            }
+            .centers_platform .tag {
+                color: #000;
+                font-size: 1.4em;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+            .centers_platform .title {
+                color: #0F5499;
+                font-size: 3em;
+            }
+            .centers_platform .description {
+                color: #77848D;
+                font-size: 1.3em;
+                font-weight: 300;
+                line-height: 1.8em;
+            }
+            .centers_button_closest, .centers_button_viewall {
+                font-size: 1.3em;
+                font-weight: 300;
+                padding: 10px 25px;
+            }
+            .centers_button_closest {
+                background: #1477D7;
+                color: #FFF;
+                border: none;
+                border-radius: 5px;
+                margin-right: 10px;
+            }
+            .centers_button_closest:hover {
+                background: #0E5397;
+            }
+            .centers_button_viewall {
+                background: #FFF;
+                color: #1477D7;
+                border-radius: 5px;
+                border: 2px solid #0F5499;
+            }
+            .centers_button_viewall:hover {
+                background: #0F5499;
+                color: #FFF;
+            }
+            /* WHAT'S NEW CONTAINER */
+            .row_whatsnew {
+                color: #77848C;
+                margin-bottom: 40px;
+                overflow: auto;
+            }
+            .row_whatsnew .whatsnew_readmore {
+                color: #1477D7;
+                font-size: 1.2em;
+            }
+            .row_whatsnew .whatsnew_readmore:hover {
+                text-decoration: none;
+            }
+            .row_whatsnew .whatsnew_readmore i {
+                margin-left: 5px;
+            }
+            .whatsnew_title {
+                display: block;
+                color: #0F5499;
+                font-size: 2.8em;
+                margin-bottom: 20px;
+            }
+            .whatsnew_main, .whatsnew_article {
+                width: 47%;
+            }
+            .whatsnew_article .frame {
+                overflow: auto;
+            }
+            .whatsnew_article .frame:nth-child(1) {
+                padding-bottom: 30px;
+                border-bottom: 1px solid #E5E3E0;
+                margin-bottom: 30px;
+            }
+            .whatsnew_main {
+                padding-left: 20px;
+                float: left;
+            }
+            .whatsnew_main img {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+            .whatsnew_main .title {
+                color: #16445D;
+                font-size: 1.6em;
+                line-height: 1.6em;
+            }
+            .whatsnew_main .date {
+                font-size: 1.3em;
+                font-weight: 300;
+                margin-bottom: 25px;
+            }
+            .whatsnew_main .description {
+                font-size: 1.25em;
+                font-weight: 300;
+                line-height: 1.5em;
+                margin-bottom: 20px;
+            }
+            .whatsnew_article {
+                padding-right: 20px;
+                float: right;
+            }
+            .whatsnew_article_platform {
+                width: 30%;
+                margin-right: 8%;
+                float: left;
+            }
+            .whatsnew_article_platform img {
+                width: 100%;
+            }
+            .whatsnew_article_detail {
+                width: 62%;
+                float: right;
+            }
+            .whatsnew_article_detail .title {
+                color: #16445D;
+                font-size: 1.6em;
+                line-height: 1.6em;
+            }
+            .whatsnew_article_detail .date {
+                font-size: 1.3em;
+                font-weight: 300;
+                margin-bottom: 25px;
+            }
+            .whatsnew_article_detail .description {
+                font-size: 1.25em;
+                font-weight: 300;
+                line-height: 1.5em;
+                margin-bottom: 20px;
+            }
+            /* HOME CONTAINER */
+            .container_home {
+                background: #FFF;
+                color: #A3A3A3;
+                font-size: 12px;
+            }
+            .row_home {
+                margin: 25px auto 0px;
+                padding-bottom: 45px;
+                position: relative;
+            }
+            .row_chooseplan {
+                margin-bottom: 20px;
+                overflow: auto;
+            }
+            .home_chooseplan_find {
+                 float: left;
+            }
+            .home_chooseplan_manage {
+                float: right;
+            }
+            .home_chooseplan_find img, .home_chooseplan_manage img {
+                width: 100%;
+            }
+            .home_chooseplan_find, .home_chooseplan_manage {
+                width: 48.5%;
+            }
+            .home_chooseplan_find p, .home_chooseplan_manage p {
+                text-align: center;
+                padding-top: 30px;
+            }
+            .home_chooseplan_find span, .home_chooseplan_manage span {
+                display: block;
+            }
+            .home_chooseplan_find p .title, .home_chooseplan_manage p .title {
+                font-size: 1.4em;
+                margin-bottom: 13px;
+            }
+            .home_chooseplan_find .description, .home_chooseplan_manage .description {
+                font-size: 1.2em;
+                margin-bottom: 40px;
+            }
+            .home_chooseplan_find p {
+                background: #F4F3F2;
+                color: #585757;
+            }
+            .home_chooseplan_find button, .home_chooseplan_manage button {
+                color: #FFF;
+                font-size: 1.25em;
+                padding: 10px 30px;
+                border: none;
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+            .home_chooseplan_find button {
+                background: #249721;
+            }
+            .home_chooseplan_manage p {
+                background: #043b61; /* Old browsers */
+                background: -moz-linear-gradient(-45deg,  #043b61 1%, #0f5499 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(-45deg,  #043b61 1%,#0f5499 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(135deg,  #043b61 1%,#0f5499 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#043b61', endColorstr='#0f5499',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+                color: #FFF;
+            }
+            .home_chooseplan_manage button {
+                background: #00324E;
+            }
+            .home_chooseplan_manage button:hover {
+                background: #004268;
+            }
+            .home_chooseplan_find button:hover {
+                background: #196A17;
+            }
+            .home_backtotop, .home_backtotop:focus {
+                display: block;
+                background: #1477D7;
+                color: #FFF;
+                font-size: 1.4em;
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 10px 20px;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+            .home_backtotop:hover {
+                background: #0E5397;
+                color: #FFF;
+                text-decoration: none;
+            }
+            /* ACTION CONTAINER */
+            .container_action {
+                background: #00324E;
+                color: #FFF;
+            }
+            .row_action {
+                margin: 25px auto;
+            }
+            .row_action div {
+                border-right: 1px solid #004766;
+            }
+            .row_action div:nth-child(1) {
+                padding-left: 0px;
+            }
+            .row_action div:nth-child(1) > ul {
+                padding-left: 0px;
+            }
+            .row_action ul {
+                list-style-type: none;
+            }
+            .row_action li {
+                font-size: .97em;
+                display: block;
+                margin-bottom: 10px;
+                clear: both;
+            }
+            .row_action a {
+                color: #FFF;
+                text-decoration: none;
+            }
+            .row_action a:hover {
+                color: #D1E7EE;
+            }
+            .row_action .title {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            .row_action .social {
+                border-right: none;
+            }
+            .row_action .social li {
+                font-size: 1.5em;
+                display: inline-block;
+                margin-right: 15px;
+            }
+            /* BOTTOM NAVIGATION */
+            .container_bottom {
+                background: #004766;
+                color: #D1E7EE;
+                font-size: .88em;
+            }
+            .row_bottom {
+                margin: 30px auto;
+                padding: 0px 18px;
+                overflow: auto;
+            }
+            .row_bottom p {
+                line-height: 1.75em;
+                margin-bottom: 20px;
+            }
+            .row_bottom a {
+                color: #FFF;
+                text-decoration: underline;
+            }
+            .row_bottom a:hover {
+                text-decoration: none;
+            }
+            .left {
+                padding-left: 0px;
+            }
+            .right {
+                padding-right: 0px;
+                text-align: right;
+            }
+            .bottom_masthead {
+                padding-bottom: 50px;
+                border-bottom: solid 1px #FFF;
+                margin-bottom: 20px;
+            }
+            .bottom_fb_icon {
+                width: 285px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid container_corporate" name="top">
+            <div class="row row_max_width row_corporate">
+                <ul class="corporate_menu">
+                    <li><a href="" class="active">Home</a></li>
+                    <li class="member_dropdown_frame"><a class="member_dropdown_click">Members <i class="fa fa-caret-down" aria-hidden="true"></i></a></li>
+                    <li><a href="">Employers</a></li>
+                    <li><a href="">Agents</a></li>
+                    <li><a href="">Providers</a></li>
+                </ul>
+                <ul class="corporate_tools">
+                    <li><a href="">Español</a></li>
+                    <li><a href="">Accessibility</a></li>
+                    <li><a href="">Contact Us</a></li>
+                    <li><a href=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <ul class="members_dropdown">
+                <li class="title">Select your plan type:</li>
+                <li><a href=""><i class="fa fa-users" aria-hidden="true"></i> Individual &amp; Families</a></li>
+                <li><a href=""><i class="fa fa-user" aria-hidden="true"></i> Insurance Through Your Employer</a></li>
+            </ul>
+        </div>
+        <!-- bootstrap corporate navigation -->
+        <!-- COMMENTING OUT BOOTSTRAP NAVIGATION IN LIEU OF CURRENT STYLING ISSUES (GITHUB ISSUE #1)
+        <nav class="navbar">
+            <div class="container-fluid container_corporate">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">Bootstrap theme</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> -->
+        <div class="container-fluid container_top">
+            <div class="row row_max_width row_top">
+                <ul class="top_menu">
+                    <li class="icon"><img src="img/fb_icon_top.png"</li>
+                    <li><a href="">Find a Plan</a></li>
+                    <li><a href="">Find a Doctor</a></li>
+                    <li><a href="">Find a Location</a></li>
+                </ul>
+                <button class="top_login">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Log in
+                </button>
+            </div>
+        </div>
+        <div class="container-fluid container_newmember">
+            <div class="row row_max_width row_newmember">
+                <div class="newmember_platform">
+                    <p class="title">
+                        Are you a new Florida Blue member?
+                    </p>
+                    <p class="subtitle">
+                        Let us help you maximize your benefits in just a few steps.
+                    </p>
+                </div>
+                <div class="newmember_learnmore">
+                    <button><i class="fa fa-angle-right" aria-hidden="true"></i> Learn More</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container_home">
+            <div class="row row_max_width row_home">
+                <div class="row_max_width row_centers">
+                    <div class="centers_badge">
+                        <img src="img/centers_badge.jpg" />
+                    </div>
+                    <div class="centers_platform">
+                        <p class="tag">Let our experts help you.</p>
+                        <p class="title">Florida Blue Centers in Your Community</p>
+                        <p class="description">
+                            Florida Blue Centers are designed with you in mind. With health screenings, health fairs, guest speakers, fitness classes and more, you'll find what you need in your pursuit of health.
+                        </p>
+                        <p class="centers_buttons">
+                            <button class="centers_button_closest">View My Closest Center</button>
+                            <button class="centers_button_viewall">View All Centers</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="row_max_width row_whatsnew">
+                    <div class="whatsnew_title">
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i> What's New?
+                    </div>
+                    <div class="whatsnew_main">
+                        <img src="img/whatsnew_readthis.png" />
+                        <p class="title">Some Marketplace plans closing in Florida at the end of this year</p>
+                        <p class="date">October 12, 2016</p>
+                        <p class="description">
+                            Big changes are coming to MarketplaceSM (Obamacare) plans in Florida. On December 31, 2016, UnitedHealthcare and Aetna/Coventry are closing their Marketplace plans, and Humana is closing its Marketplace plans in six counties: Polk, Lake, Osceola, Seminole, Orange and Charlotte.
+                        </p>
+                        <a href="" class="whatsnew_readmore">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="whatsnew_article">
+                        <div class="frame">
+                            <div class="whatsnew_article_platform">
+                                <img src="img/whatsnew_article_enrollment.jpg" />
+                            </div>
+                            <div class="whatsnew_article_detail">
+                                <p class="title">
+                                    Get Ready for 2017 Open Enrollment
+                                </p>
+                                <p class="date">October 23, 2016</p>
+                                <p class="description">
+                                    <strong>Get Ready for 2017 Open Enrollment</strong> It's that time...
+                                </p>
+                                <a href="" class="whatsnew_readmore">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="whatsnew_article_platform">
+                                <img src="img/whatsnew_article_pumpkinpie.png" />
+                            </div>
+                            <div class="whatsnew_article_detail">
+                                <p class="title">Pumpkin Pie Dip</p>
+                                <p class="date">October 20, 2016</p>
+                                <p class="description">
+                                    Usher in fall with this holiday favorite ingredient!<br/><br/>
+                                    Serve this crowd-pleaser as an appetizer...
+                                </p>
+                                <a href="" class="whatsnew_readmore">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row_max_width row_chooseplan">
+                    <div class="home_chooseplan_find">
+                        <img src="img/home_chooseplan_find.jpg" />
+                        <p>
+                            <span class="title">Individuals &amp; Families</span>
+                            <span class="description">The right plan for you is just a few simple steps away.</span>
+                            <button><i class="fa fa-arrow-right" aria-hidden="true"></i> Find a Plan</button>
+                        </p>
+                    </div>
+                    <div class="home_chooseplan_manage">
+                        <img src="img/home_chooseplan_manage.jpg" />
+                        <p>
+                            <span class="title">Already a Member?</span>
+                            <span class="description">Manage your plan online.</span>
+                            <button><i class="fa fa-sign-in" aria-hidden="true"></i> Access Your Account</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="row_max_width">
+                    <p>
+                        Our Medicare Supplement insurance policies are not connected with or endorsed by the U.S. Government or the Federal Medicare Program. These policies have limitations and exclusions.
+                    </p>
+                    <p>
+                        Florida Blue is a trade name of Blue Cross and Blue Shield of Florida, Inc., an Independent Licensee of the Blue Cross and Blue Shield Association.
+                    </p>
+                    <p>FB HM F 052016</p>
+                </div>
+                <a href="#top" class="home_backtotop">Back to Top</a>
+            </div>
+        </div>
+        <div class="container-fluid container_action">
+            <div class="row row_max_width row_action">
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                        <li class="title">Individuals and Families</li>
+                        <li><a href="">Tools and Resources</a></li>
+                        <li><a href="">How Insurance Works</a></li>
+                        <li><a href="">Pharmacy</a></li>
+                        <li><a href="">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                        <li class="title">Helpful Resources</li>
+                        <li><a href="">About Health Care Reform</a></li>
+                        <li><a href="">Find a Location</a></li>
+                        <li><a href="">Find an Agent</a></li>
+                        <li><a href="">Final Rate Determination</a></li>
+                        <li><a href="">Summary of Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul>
+                        <li class="title">About Florida Blue</li>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Florida Blue Foundation</a></li>
+                        <li><a href="">Careers</a></li>
+                        <li><a href="">Newsroom</a></li>
+                        <li><a href="">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 social">
+                    <ul>
+                        <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container_bottom">
+            <div class="row row_max_width row_bottom">
+                <div class="row bottom_masthead">
+                    <div class="col-md-6 col-xs-12 left">
+                        <img src="img/fb_icon.png" class="bottom_fb_icon" />
+                    </div>
+                    <div class="col-md-6 col-xs-12 right">
+                        <a href="">Internet Privacy Statement</a> | <a href="">Terms of Use</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>
+                        We comply with applicable Federal civil rights laws and do not discriminate on the basis of race, color, national origin, age, disability or sex. You may access the Nondiscrimination and Accessibility notice <a href="">here</a>.
+                    </p>
+                    <p>
+                        Language assistance available: <a href="">Español</a>, <a href="">Kreyol Ayisien</a>, <a href="">Tiếng Việt</a>, <a href="">Português</a>, <a href="">中文</a>, <a href="">français</a>, <a href="">Tagalog</a>, <a href="">русский</a>, <a href="">لعربية,</a>, <a href="">italiano</a>, <a href="">Deutsche</a>, <a href="">한국어</a>, <a href="">Polskie</a>, <a href="">Gujarati</a>, <a href="">ไทย</a>, <a href="">日本語</a>, <a href="">فارسی</a>
+                    </p>
+                    <p>
+                        Generally, the pronouns "our," "we" and "us" used throughout this website are intended to refer collectively to Blue Cross and Blue Shield of Florida, Inc. and its subsidiaries and affiliates. However, where appropriate, the content may identify a particular company; there, any pronouns refer to that specific entity.
+                    </p>
+                    <p>
+                        Health insurance is offered by Blue Cross and Blue Shield of Florida, Inc., DBA Florida Blue. HMO coverage is offered by Health Options Inc., DBA Florida Blue HMO, an HMO affiliate of Blue Cross and Blue Shield of Florida, Inc. Dental, Life and Disability are offered by Florida Combined Life Insurance Company, Inc., DBA Florida Combined Life, an affiliate of Blue Cross and Blue Shield of Florida, Inc. These companies are Independent Licensees of the Blue Cross and Blue Shield Association.
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="col-md-4 col-xs-12 left">
+                        FB MFT 001 NF 092016
+                    </p>
+                    <p class="col-md-8 col-sx-12 pull-right right">
+                        &copy; 2016 Blue Cross and Blue Shield of Florida, Inc. DBA Florida Blue. All Rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery code after document is ready -->
+        <script>
+            $(document).ready(function() {
+                $('.member_dropdown_frame').append($('.members_dropdown'));
+                $('.member_dropdown_click').click(function() {
+                    $('.members_dropdown').toggleClass('members_dropdown_show');
+                });
+            });
+        </script>
+    </body>
+</html>
